@@ -9,19 +9,27 @@ import cv2
 import numpy as np
 from matplotlib import pyplot as plt
 
-while True:
-    vidcap = cv2.VideoCapture()         # Open webcam
-    vidcap.open(0)
-    retval, image = vidcap.retrieve()   # Save webcam pic
-    time.sleep(0.)
-    vidcap.release()                    # Clear webcam
-    cv2.imwrite("test2.png", image)
-    img = cv2.imread('test2.png',0)
-    edges = cv2.Canny(img,100,200)
-    plt.subplot(121),plt.imshow(img,cmap = 'gray')
-    plt.title('Original Image'), plt.xticks([]), plt.yticks([])
-    plt.subplot(122),plt.imshow(edges,cmap = 'gray')
-    plt.title('Edge Image'), plt.xticks([]), plt.yticks([])
-    plt.savefig('messi5_edge.png')
-    plt.show()
-    time.sleep(0.01)
+def loop_canny():
+    while True:
+        vidcap = cv2.VideoCapture()         # Open webcam
+        vidcap.open(0)
+        retval, image = vidcap.retrieve()   # Save webcam pic
+        time.sleep(0.0)
+        vidcap.release()                    # Clear webcam
+        cv2.imwrite("test2.png", image)
+        img = cv2.imread('test2.png',0)
+        edges = cv2.Canny(img,100,200)
+        plt.subplot(121),plt.imshow(img,cmap = 'gray')
+        plt.title('Original Image'), plt.xticks([]), plt.yticks([])
+        plt.subplot(122),plt.imshow(edges,cmap = 'gray')
+        plt.title('Edge Image'), plt.xticks([]), plt.yticks([])
+        plt.savefig('messi5_edge.png')
+        plt.show()
+        time.sleep(0.01)
+
+
+def __main__():
+    loop_canny()
+
+
+__main__()
